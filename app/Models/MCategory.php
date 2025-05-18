@@ -8,7 +8,7 @@ class MCategory extends Model
 {
     protected $fillable = [
         'name',
-        'description',
+        'slug',
     ];
 
     public function posts()

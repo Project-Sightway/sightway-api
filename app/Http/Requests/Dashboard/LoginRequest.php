@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests\Dashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePostRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +22,8 @@ class StorePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category_id' => 'required|integer|exists:m_categories,id',
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'thumbnail' => 'required|string|max:255',
-            'tags' => 'required|array',
-            'tags.*' => 'required|integer|exists:m_tags,id'
+            'email' => 'required|email|max:255',
+            'password' => 'required|max:255',
         ];
     }
 }

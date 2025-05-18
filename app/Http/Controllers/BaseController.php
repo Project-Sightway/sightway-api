@@ -33,7 +33,7 @@ abstract class BaseController extends Controller
      * @param int $code
      * @return JsonResponse
      */
-    public function sendError(string $error, array $errorMessages = [], int $code = 404): JsonResponse
+    public function sendError(string $error, array $errorMessages = [], int $code = 400): JsonResponse
     {
         $response = [
             'success' => false,
