@@ -13,7 +13,14 @@ class MTagController extends BaseController
     public function index()
     {
         try {
-            $data = MTag::all();
+            $query = request()->query('q');
+
+            if ($query) {
+                $data = MTag::where('name', 'like', '%' . $query . '%')->paginate(10);
+            } else {
+                $data = MTag::paginate(10);
+            }
+
             return $this->sendSuccess($data);
         } catch (\Exception $e) {
             return $this->sendError($e->getMessage());

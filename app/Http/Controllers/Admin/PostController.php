@@ -13,9 +13,15 @@ class PostController extends BaseController
     public function index()
     {
         try {
-            $data = Post::with(['category', 'tags'])
-                ->orderBy('created_at', 'desc')
+            $query = Post::with(['category', 'tags']);
+
+            if (request()->has('q')) {
+                $query->where('title', 'like', '%' . request()->q . '%');
+            }
+
+            $data = $query->orderBy('created_at', 'desc')
                 ->paginate(10);
+
             return $this->sendSuccess($data);
         } catch (\Exception $e) {
             return $this->sendError($e->getMessage());
