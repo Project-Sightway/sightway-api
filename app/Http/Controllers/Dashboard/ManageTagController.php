@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\BaseController;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Dashboard\MTagStoreUpdateRequest;
+use App\Http\Requests\Dashboard\ManageTagStoreUpdateRequest;
 use App\Models\MTag;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class ManageTagController extends BaseController
@@ -27,7 +25,7 @@ class ManageTagController extends BaseController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(MTagStoreUpdateRequest $request)
+    public function store(ManageTagStoreUpdateRequest $request)
     {
         try {
             $data = $request->validated();
@@ -55,7 +53,7 @@ class ManageTagController extends BaseController
     /**
      * Update the specified resource in storage.
      */
-    public function update(MTagStoreUpdateRequest $request, string $slug)
+    public function update(ManageTagStoreUpdateRequest $request, string $slug)
     {
         try {
             $data = $request->validated();

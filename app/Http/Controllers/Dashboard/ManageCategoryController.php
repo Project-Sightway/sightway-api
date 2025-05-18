@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\BaseController;
-use App\Http\Requests\Dashboard\MCategoryStoreUpdateRequest;
+use App\Http\Requests\Dashboard\ManageCategoryStoreUpdateRequest;
 use App\Models\MCategory;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class ManageCategoryController extends BaseController
@@ -26,7 +25,7 @@ class ManageCategoryController extends BaseController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(MCategoryStoreUpdateRequest $request)
+    public function store(ManageCategoryStoreUpdateRequest $request)
     {
         try {
             $data = $request->validated();
@@ -54,7 +53,7 @@ class ManageCategoryController extends BaseController
     /**
      * Update the specified resource in storage.
      */
-    public function update(MCategoryStoreUpdateRequest $request, string $slug)
+    public function update(ManageCategoryStoreUpdateRequest $request, string $slug)
     {
         try {
             $data = $request->validated();

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Dashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MCategoryStoreUpdateRequest extends FormRequest
+class ManageTagStoreUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,7 @@ class MCategoryStoreUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'  => 'required|string|max:255|unique:m_categories,name,' . $this->id,
+            'name'  => 'required|string|max:255|unique:m_tags,name,' . $this->id,
         ];
     }
 }
