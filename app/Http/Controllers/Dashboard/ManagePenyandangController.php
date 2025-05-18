@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\BaseController;
-use App\Models\LogPenyandangStatus;
-use App\Models\Pemantau;
+use App\Models\BlindStick;
+use App\Models\Penyandang;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class ManagePemantauController extends BaseController
+class ManagePenyandangController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class ManagePemantauController extends BaseController
     public function index()
     {
         try {
-            $query = User::with('pemantau')
-                ->whereHas('pemantau')
+            $query = User::with('penyandang')
+                ->whereHas('penyandang')
                 ->select(['id', 'name', 'email', 'created_at']);
 
             if (request()->has('q')) {
@@ -32,29 +32,43 @@ class ManagePemantauController extends BaseController
         }
     }
 
+
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
         try {
-            $pemantau = Pemantau::with('user')->where('user_id', $id)->first();
-            $penyandang = $pemantau->penyandang()
+            $penyandang = Penyandang::with([
+                'user:id,email,name',
+                'blindstick'
+            ])
+                ->where('user_id', $id)
+                ->first();
+            $pemantau = $penyandang->pemantau()
                 ->paginate(10);
+
             return $this->sendSuccess([
-                'pemantau' => $pemantau,
                 'penyandang' => $penyandang,
+                'pemantau' => $pemantau,
             ]);
         } catch (\Exception $e) {
             return $this->sendError($e->getMessage());
         }
     }
 
-    public function getLastMap(string $id)
+    public function latestStatusBlindstick(string $id)
     {
         try {
-            $data = LogPenyandangStatus::where('penyandang_id', $id)->latest()->first();
-            return $this->sendSuccess($data);
+            $data = BlindStick::find($id);
+            $latestStatus = $data->logBlindstick()
+                ->orderBy('created_at', 'desc')
+                ->get(3);
+
+            return $this->sendSuccess([
+                'blindstick' => $data,
+                'latest_status' => $latestStatus,
+            ]);
         } catch (\Exception $e) {
             return $this->sendError($e->getMessage());
         }

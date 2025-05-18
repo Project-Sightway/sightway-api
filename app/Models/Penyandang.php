@@ -33,4 +33,9 @@ class Penyandang extends Model
     {
         return $this->hasMany(LogPenyandangCam::class);
     }
+
+    public function blindstick()
+    {
+        return $this->belongsTo(Blindstick::class);
+    }
 }

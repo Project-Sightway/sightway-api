@@ -11,7 +11,7 @@ class BlindStick extends Model
         'is_used'
     ];
 
-    public function log_blindsticks()
+    public function logBlindsticks()
     {
         return $this->hasMany(LogBlindstick::class);
     }
