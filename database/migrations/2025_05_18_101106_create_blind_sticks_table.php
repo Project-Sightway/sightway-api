@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('blind_sticks', function (Blueprint $table) {
             $table->id();
+            $table->string('mac_address');
+            $table->boolean('is_used');
             $table->timestamps();
         });
     }

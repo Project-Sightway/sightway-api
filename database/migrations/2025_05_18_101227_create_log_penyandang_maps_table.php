@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('log_penyandang_maps', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('penyandang_id')->constrained('penyandang')->onDelete('cascade');
+            $table->string('latitude');
+            $table->string('longitude');
             $table->timestamps();
         });
     }

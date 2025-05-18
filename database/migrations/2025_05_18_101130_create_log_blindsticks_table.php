@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('log_blindsticks', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('blindstick_id')->constrained('blind_sticks')->onDelete('cascade');
+            $table->enum('status', ['normal', 'danger'])->default('normal');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

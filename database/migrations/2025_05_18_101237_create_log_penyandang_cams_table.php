@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('log_penyandang_cams', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('penyandang_id')->constrained('penyandang')->onDelete('cascade');
+            $table->string('folder_name');
             $table->timestamps();
         });
     }

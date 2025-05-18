@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('app_histories', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('description');
+            $table->string('file_apk');
+            $table->string('file_ipa');
             $table->timestamps();
         });
     }

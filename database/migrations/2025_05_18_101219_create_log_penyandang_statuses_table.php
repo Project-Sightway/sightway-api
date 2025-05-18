@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('log_penyandang_statuses', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('penyandang_id')->constrained('penyandang')->onDelete('cascade');
+            $table->enum('status', ['normal', 'danger']);
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
