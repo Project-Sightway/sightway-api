@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\Dashboard\BlindstickStoreUpdateRequest;
 use App\Models\BlindStick;
-use Illuminate\Http\Request;
 
 class ManageBlindstickController extends BaseController
 {

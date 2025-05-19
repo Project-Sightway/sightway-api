@@ -112,13 +112,9 @@ class ManagePostController extends BaseController
     public function destroy(string $slug)
     {
         try {
-            try {
-                $post = Post::where('slug', $slug)->first();
-                $post->delete();
-                return $this->sendSuccess($post);
-            } catch (\Exception $e) {
-                return $this->sendError($e->getMessage());
-            }
+            $post = Post::where('slug', $slug)->first();
+            $post->delete();
+            return $this->sendSuccess($post);
         } catch (\Exception $e) {
             return $this->sendError($e->getMessage());
         }

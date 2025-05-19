@@ -6,7 +6,6 @@ use App\Http\Controllers\BaseController;
 use App\Models\BlindStick;
 use App\Models\Penyandang;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class ManagePenyandangController extends BaseController
 {

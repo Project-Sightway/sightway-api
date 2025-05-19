@@ -6,7 +6,6 @@ use App\Http\Controllers\BaseController;
 use App\Models\LogPenyandangStatus;
 use App\Models\Pemantau;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class ManagePemantauController extends BaseController
 {

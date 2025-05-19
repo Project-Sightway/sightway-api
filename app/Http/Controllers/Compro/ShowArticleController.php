@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Compro;
 
 use App\Http\Controllers\BaseController;
 use App\Models\Post;
-use Illuminate\Http\Request;
 
 class ShowArticleController extends BaseController
 {

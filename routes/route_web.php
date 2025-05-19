@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Compro\GetLastArticleController;
+use App\Http\Controllers\Compro\LastAppController;
+use App\Http\Controllers\Compro\SearchArticleController;
+use App\Http\Controllers\Compro\ShowArticleController;
+use App\Http\Controllers\Dashboard\AppHistoryController;
 use App\Http\Controllers\Dashboard\AuthController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\ManageAdminController;
@@ -17,6 +22,8 @@ Route::prefix('dashboard')->group(function () {
         Route::middleware('role:super_admin')->group(function () {
             Route::apiResource('/manage-admin', ManageAdminController::class)->except('update');
             Route::post('/manage-admin/reset-password', [ManageAdminController::class, 'resetPassword']);
+
+            Route::apiResource('/app-history', AppHistoryController::class)->except('update');
         });
 
         Route::middleware('role:super_admin|admin')->group(function () {
@@ -45,5 +52,17 @@ Route::prefix('dashboard')->group(function () {
 
     Route::middleware('guest')->group(function () {
         Route::post('/login', [AuthController::class, 'login']);
+    });
+});
+
+Route::prefix('guest-compro')->group(function () {
+    Route::middleware('guest')->group(function () {
+        Route::prefix('article')->group(function () {
+            Route::get('/', SearchArticleController::class);
+            Route::get('/{slug}', ShowArticleController::class);
+            Route::get('/last', GetLastArticleController::class);
+        });
+
+        Route::get('/get-app', LastAppController::class);
     });
 });

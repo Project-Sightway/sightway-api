@@ -6,7 +6,6 @@ use App\Http\Controllers\BaseController;
 use App\Http\Requests\Dashboard\ManageAdminResetRequest;
 use App\Http\Requests\Dashboard\ManageAdminStoreUpdateRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class ManageAdminController extends BaseController
 {
