@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('content');
             $table->string('thumbnail');
             $table->integer('views')->default(0);
+            $table->string('img_url');
             $table->timestamps();
         });
     }
